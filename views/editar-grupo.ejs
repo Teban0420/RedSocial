@@ -1,0 +1,41 @@
+
+<main class="contenedor contenedor-formularios no-padding">
+    <h1><%= pagina %></h1>
+    <form class="default-form"  method="POST" >
+        
+        <div class="campo">
+            <label>Nombre</label>
+            <input type="text" value="<%= grupo.nombre %>" name="nombre" placeholder="Nombre del Grupo">
+        </div>
+
+        <div class="descripcion">
+            <label>Descripcion</label>
+            <div class="contenedor-editor">
+                <input type="hidden" id="x" name="descripcion" value="<%= grupo.descripcion %>">
+                <trix-editor input="x"></trix-editor>
+            </div>
+        </div>
+
+        <div class="campo">
+            <label>Categoria</label>
+            <select name="categoria" id="">
+                <option value="" selected disabled>-- Elige una categoria</option>
+                <% categorias.forEach( categoria => { %>
+                    <option 
+                        value="<%= categoria.id %>"
+                        <%= (grupo.categoriaId === categoria.id) ? 'selected' : '' %>
+                        ><%= categoria.nombre %></option>
+                <% }) %>
+            </select>
+        </div>
+
+        <div class="campo">
+            <label>Sitio Web</label>
+            <input type="url" name="url"  value="<%= grupo.url %>" placeholder="Tu sitio web">
+        </div>
+
+        <div class="campo">
+            <input type="submit" value="Guardar Cambios" class="btn btn-rosa">
+        </div>
+    </form>
+</main>
